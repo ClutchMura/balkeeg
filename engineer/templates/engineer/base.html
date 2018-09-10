@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head lang="ja">
+	<meta charset="utf-8">
+	<title>エンジニアコミュニティ</title>
+	<!-- <link rel="icon" href="{% static 'engineer/favicon.ico'%}" > -->
+	<meta name="description" content="エンジニアコミュニティ">
+	<link rel="stylesheet" href="{% static 'engineer/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'engineer/css/style.css' %}">
+</head>
+<body class="container-fluid">
+	<div class="jumbotron">
+    <h3 class="display-12">エンジニアコミュニティ {{ user.username }}</h3>
+		<ul class="list-inline" style="text-align: right">
+			<li class="list-inline-item">
+				<a href="{% url 'engineer:register' %}" >
+					新規登録
+				</a>
+			<li class="list-inline-item">
+				<a href="{% url 'engineer:mypage' %}" >
+					マイページ
+				</a>
+			</li>
+			<li class="list-inline-item">
+				<a href="{% url 'engineer:login' %}">
+					ログイン
+				</a>
+			</li>
+			<li class="list-inline-item">
+				<a href="{% url 'engineer:logout' %}">
+					ログアウト
+				</a>
+			</li>
+		</ul>
+    <!-- <hr class="m-y-md"> -->
+    <p class="lead">ブロックチェーンを使用したアプリ</p>
+    <p>このサイトはエンジニアと企業を結びつけるサービスです</p>
+  </div>
+
+  {% block content %}
+  {% endblock %}
+<body>
+</html>
