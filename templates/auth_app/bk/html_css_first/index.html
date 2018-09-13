@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'engineer/base.html' %}
+{% load staticfiles %}
+
+{ HOME_CURRENT }="class="current""
+
+{% block content %}
+<div class="works">
+	<section>
+		<img src="{% static 'engineer/work1.png'%}" width="400" height="260" alt="勇者ゲーム">
+		<h1>勇者ゲーム</h1>
+		<p>楽しいゲームです。楽しいゲームです。楽しいゲームです。楽しいゲームです。楽しいゲームです。楽しいゲームです。楽しいゲームです。楽しいゲームです。楽しいゲームです。楽しいゲームです。</p>
+	</section>
+
+	<section>
+		<img src="{% static 'engineer/work2.png'%}" width="400" height="260" alt="宝探しゲーム">
+		<h1>宝探しゲーム</h1>
+		<p>楽しいゲームです</p>
+	</section>
+
+	<section>
+		<img src="{% static 'engineer/work3.png'%}" width="400" height="260" alt="神経衰弱">
+		<h1>神経衰弱</h1>
+		<p>楽しいゲームです</p>
+	</section>
+</div>
+{% endblock %}
