@@ -32,16 +32,14 @@
           <td>
           <table class="table">
             <tr>
-              <td>メールアドレス</td>
-              <td>{{ user.email }} </td>
+              <td>方法</td>
+              <td>リンク</td>
             </tr>
             <tr>
-              <td>twitter</td>
-              <td>twitterリンク </td>
-            </tr>
-            <tr>
-              <td>github</td>
-              <td>githubリンク </td>
+              {% for list in Contact_list %}
+                <td>{{ list.contact_type }}</td>
+                <td>{{ list.contact_link }}</td>
+              {% endfor %}
             </tr>
           </table>
         </tr>

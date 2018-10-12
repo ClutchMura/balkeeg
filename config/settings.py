@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_NAME = os.path.basename(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user_auth.apps.AuthConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -128,5 +131,61 @@ STATICFILES_DIRS = (
 
 #ログイン用に追加　※add
 LOGIN_URL='/login/'
-LOGIN_REDIRECT_URL = '/auth/mypage'
-LOGOUT_REDIRECT_URL='/auth/'
+LOGIN_REDIRECT_URL = '/mypage'
+LOGOUT_REDIRECT_URL='/mypage'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+AUTH_USER_MODEL='user_auth.CustomUser'
+
+#ロギング設定
+LOGGING = {
+    #バージョンは 「1」 固定
+    'version': 1,
+
+    #既 存 のログ 設 定 を 無 効 化 しない '
+    'disable_existing_loggers': False,
+
+    #ログフォーマット
+    'formatters': {
+        #本 番 ⽤
+        'production': {
+            # 'format': '%(asctime)s [%(levelname)s] %(process)d %(thread)d '
+            #         　'%(pathname)s:%(lineno)d %(message)s'
+
+            'format':'%(asctime)s [%(levelname)s] %(process)d %(thread)d '
+                     '%(pathname)s:%(lineno)d %(message)s'
+        },
+    },
+
+    #ハンドラ
+    'handlers': {
+        #ファイル 出 ⼒ ⽤ ハンドラ
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/{}.log'.format(PROJECT_NAME),
+            'formatter': 'production',
+        },
+    },
+
+    #ロガー
+    'loggers': {
+        #⾃ 作 アプリケーション 全般 のログを 拾 うロガー
+        '': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+
+        #Django 本体 が 出 すログ 全般 を 拾 うロガー
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+INTERNAL_IPS = ['127.0.0.1']
