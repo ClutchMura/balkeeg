@@ -1,57 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'base_profile.html' %}
 {% load staticfiles %}
 
-{% block content %}
-<div class="container">
-  <div class="row">
-    <!-- プロフィール画像 -->
-    <div class="card col-xs-12 col-sm-6">
-      <div class="card-header">
-        <p1>プロフィール</p1>
-      </div>
-      プロフィール画像
-      <button type="button1" class="btn btn-primary">アップロード</button>
-    </div>
-    <!-- プロフィールブロック -->
-    <div class="card col-xs-12 col-sm-6">
-      <table class="table">
-        <tr>
-          <td>主キー</td>
-          <td>{{ user.id }}</td>
-        </tr>
-        <tr>
-          <td>ユーザ名</td>
-          <td>{{ user.username }}</td>
-        </tr>
-        <tr>
-          <td>氏名</td>
-          <td>{{ user.first_name }} {{ user.last_name }}</td>
-        </tr>
-        <tr>
-          <td>連絡先</td>
-          <td>
-          <table class="table">
-            <tr>
-              <td>方法</td>
-              <td>リンク</td>
-            </tr>
-            <tr>
-              {% for list in Contact_list %}
-                <td>{{ list.contact_type }}</td>
-                <td>{{ list.contact_link }}</td>
-              {% endfor %}
-            </tr>
-          </table>
-        </tr>
-    </table>
+{% block username %}
+  {{ user.username }}
+{% endblock %}
 
-<a href="{% url 'user_auth:updateprofile' user.id %}" >
-      編集
-</a>
+{% block first_name %}
+  {{ user.first_name }}
+{% endblock %}
 
-  <!--<button type="button1" class="btn btn-primary float-right" >編集</button> -->
-  </div>
-</div><!-- /.container -->
+{% block last_name %}
+  {{ user.last_name }}
+{% endblock %}
 
+{% block profile %}
+  {{ user.profile }}
+{% endblock %}
 
+{% block  Contact_list %}
+  {% for list in Contact_list %}
+    <td>{{ list.contact_type }}</td>
+    <td>{{ list.contact_link }}</td>
+  {% endfor %}
 {% endblock %}

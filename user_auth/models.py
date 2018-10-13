@@ -11,11 +11,14 @@ class CustomUser(AbstractBaseUser, auth_models.PermissionsMixin):
     class Meta:
         db_table = 'custom_user'
 
+    #ユーザ基本情報
     username = models.CharField(max_length=10,unique=True)
-    # username = models.CharField(max_length=10,unique=True)
-    email = models.EmailField(unique=False)
+    email = models.EmailField(unique=False, blank=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
+
+    #ユーザプロフィール詳細
+    profile = models.CharField(max_length=10000, blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
