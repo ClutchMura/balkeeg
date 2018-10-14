@@ -23,3 +23,13 @@
     <td>{{ list.contact_link }}</td>
   {% endfor %}
 {% endblock %}
+
+{% block button %}
+    <input type="button" class="btn btn-primary" value="プロフィール編集" onClick="location.href='{% url 'user_auth:updateprofile' user.id　%}'">
+{% endblock %}
+
+{% block form_header %}
+{% endblock %}
+
+{% block form_fotter %}
+{% endblock %}

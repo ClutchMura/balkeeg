@@ -4,8 +4,9 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <!-- プロフィールブロック -->
     <div class="card col-xs-12 col-sm-6">
+      {% block form_header %}
+      {% endblock %}
       <table class="table">
         <tr>
           <td>ユーザ名</td>
@@ -16,20 +17,6 @@
           <td>{% block first_name %}{% endblock %} {% block last_name %}{% endblock %}</td>
         </tr>
         プロフィール画像
-
-        <tr>
-          <td>連絡先</td>
-          <td>
-          <table class="table">
-            <tr>
-              <td>方法</td>
-              <td>リンク</td>
-            </tr>
-            <tr>
-              {% block  Contact_list %}{% endblock %}
-            </tr>
-          </table>
-        </tr>
     </table>
     </div>
     <!-- プロフィール画像 -->
@@ -37,9 +24,41 @@
       {% block profile %}{% endblock %}
     </div>
 
-    <button type="button1" class="btn btn-primary">プロフィール編集</button>
+    {% block button %}
+    {% endblock %}
 
-</div><!-- /.container -->
+    {% block form_fotter %}
+    {% endblock %}
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="row card col-xs-12 col-sm-6">
+      <table class="table">
+        <tr>
+          <td>方法</td>
+          <td>リンク</td>
+        </tr>
+        <tr>
+          {% block  Contact_list %}{% endblock %}
+        </tr>
+      </table>
+    </div>
+    <div class="card col-xs-12 col-sm-6">
+      <table class="table">
+        <tr>
+          <td>スキル名</td>
+          <td>スキルレベル</td>
+        </tr>
+        <tr>
+          {% block  Skill_list %}{% endblock %}
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}

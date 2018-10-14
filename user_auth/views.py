@@ -50,10 +50,13 @@ class PasswordChangeDoneView(auth_views.PasswordChangeDoneView):
 
 #ユーザ情報更新
 class UpDateProfile(generic.UpdateView):
-    model = auth_user
-    form_class = forms.RegisterForm
+    model = models.CustomUser
+    fields = (
+        "username", "first_name", "last_name","profile",
+    )
     template_name = 'updateprofile.html'
     success_url = reverse_lazy('user_auth:mypage')
+
 
 #「LoginRequiredMixin」でログイン時のみ表示
 class MyPageView(LoginRequiredMixin, generic.TemplateView):

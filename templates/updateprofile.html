@@ -1,27 +1,39 @@
-{% extends 'base.html' %}
+{% extends 'base_profile.html' %}
 {% load staticfiles %}
 
-{% block content %}
-<div class="container">
-  <form action="{% url 'user_auth:updateprofile' user.id%}" method="POST">
-  {% csrf_token %}
-  <div class="card col-xs-12 col-sm-6">
-       <table class="table">
-         <tr>
-           <td>性</td>
-           <td>{{ form.first_name }}</td>
-        </tr>
-         <tr>
-           <td>名</td>
-           <td>{{ form.last_name }}</td>
-         </tr>
-      </table>
-      <div class="row">
-        <div class="col-xs-12 col-sm-6">
-  	         <button type="submit" class="btn btn-lg btn-block btn-outline-primary">送信</button>
-    　　 </div>
-  　　　</div>
-  </div>
-</form>
-</div>
+{% block username %}
+  {{ form.username }}
+{% endblock %}
+
+{% block first_name %}
+  {{ form.first_name }}
+{% endblock %}
+
+{% block last_name %}
+  {{ form.last_name }}
+{% endblock %}
+
+{% block profile %}
+  {{ form.profile }}
+{% endblock %}
+
+{% block  Contact_list %}
+  {% for list in Contact_list %}
+    <td>{{ list.contact_type }}</td>
+    <td>{{ list.contact_link }}</td>
+  {% endfor %}
+{% endblock %}
+
+{% block button %}
+    <input type="submit" class="btn btn-primary" value="保存">
+    <input type="button" class="btn btn-primary" value="キャンセル" onClick="history.back()">
+{% endblock %}
+
+{% block form_header %}
+  　<form action="{% url 'user_auth:updateprofile' user.id　%}" method="POST">
+    {% csrf_token %}
+{% endblock %}
+
+{% block form_fotter %}
+  </form>
 {% endblock %}
